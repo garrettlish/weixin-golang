@@ -89,11 +89,11 @@
   <script>
     init();
     function init() {
-      $.ajax("/api/count", {
-        method: "get",
+      $.ajax("/api/stock", {
+        method: "GET",
       }).done(function (res) {
         if (res && res.data !== undefined) {
-          $(".count-number").html(res.data);
+          $(".latest-data").html(res.data);
         }
       });
     }
