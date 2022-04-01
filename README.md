@@ -48,6 +48,9 @@
 curl https://<云托管服务域名>/api/stock
 ```
 
+#### 
+docker build -t garrettlish/weixin-golang:test .
+docker run --name "weixin-golang" -p 80:80 -d -t garrettlish/weixin-golang:test
 
 ## License
 

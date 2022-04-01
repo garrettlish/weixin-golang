@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"io/ioutil"
 	"net/http"
+	"strings"
 	"weixin-golang/pkg"
 )
 
@@ -30,7 +31,7 @@ func StockHandler(w http.ResponseWriter, r *http.Request) {
 	var b []byte
 	if err == nil {
 		res.Code = 200
-		res.Data = fmt.Sprintf("%v", result)
+		res.Data = strings.Join(result, "<br />")
 		b, err = json.Marshal(res)
 	}
 	if err != nil {
