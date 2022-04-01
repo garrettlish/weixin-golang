@@ -23,7 +23,7 @@
       .container {
         margin-top: 100px;
       }
-      .count-button {
+      .data-button {
         width: 132px;
         box-sizing: border-box;
         margin: 16px 8px;
@@ -67,7 +67,7 @@
         <div
           style="display: flex; justify-content: center; margin-bottom: 80px"
         >
-          <a class="btn btn-success btn-lg count-button" style="background: #07C160; border: 0;" onclick="updatedata()">更新</a>
+          <a class="btn btn-success btn-lg data-button" style="background: #07C160; border: 0;">更新</a>
         </div>
       </div>
     </div>
@@ -79,26 +79,29 @@
     crossorigin="anonymous"
   ></script>
   <script>
-    init();
-    function init() {
-      $.ajax("/api/stock", {
-        method: "GET",
-      }).done(function (res) {
-        if (res && res.data !== undefined) {
-          $(".data-content").html(res.data);
-        }
+    $(document).ready(function () {
+      init();
+      function init() {
+        $.ajax("/api/stock", {
+          method: "GET",
+        }).done(function (res) {
+          if (res && res.data !== undefined) {
+            $(".data-content").html(res.data);
+          }
+        });
+      }
+
+      $('.data-button').click(function (){
+        $.ajax("/api/stock", {
+          method: "GET",
+          contentType: "application/json; charset=utf-8",
+          dataType: "json"
+        }).done(function (res) {
+          if (res && res.data !== undefined) {
+            $(".data-content").html(res.data);
+          }
+        });
       });
-    }
-    function updatedata() {
-      $.ajax("/api/stock", {
-        method: "GET",
-        contentType: "application/json; charset=utf-8",
-        dataType: "json"
-      }).done(function (res) {
-        if (res && res.data !== undefined) {
-          $(".data-content").html(res.data);
-        }
-      });
-    }
+    });
   </script>
 </html>
