@@ -28,12 +28,12 @@
         box-sizing: border-box;
         margin: 16px 8px;
       }
-      .count-number {
+      .data-content {
         font-size: 18px;
         font-weight: bolder;
         margin: 0 8px;
       }
-      .count-text {
+      .data-text {
         width: 280px;
         display: flex;
         margin: 0 auto;
@@ -43,14 +43,6 @@
         border-radius: 4px;
         line-height: 40px;
         padding: 0 12px;
-      }
-      .quote {
-        font-size: 12px;
-      }
-      .qrcode {
-        height: 180px;
-        display: block;
-        margin: 0 auto;
       }
       .title {
         display: flex;
@@ -71,11 +63,11 @@
         <h1 style="display: inline; margin-bottom: 48px;">欢迎Garrett李小程序</h1>
       </div>
       <div style="text-align: center">
-        <p class="count-text">最新数据：<span class="latest-data"></span></p>
+        <p class="data-text">最新数据：<span class="data-content"></span></p>
         <div
           style="display: flex; justify-content: center; margin-bottom: 80px"
         >
-          <a class="btn btn-success btn-lg count-button" style="background: #07C160; border: 0;" onclick="update()">更新</a>
+          <a class="btn btn-success btn-lg count-button" style="background: #07C160; border: 0;" onclick="updatedata()">更新</a>
         </div>
       </div>
     </div>
@@ -93,18 +85,18 @@
         method: "GET",
       }).done(function (res) {
         if (res && res.data !== undefined) {
-          $(".latest-data").html(res.data);
+          $(".data-content").html(res.data);
         }
       });
     }
-    function update() {
+    function updatedata() {
       $.ajax("/api/stock", {
         method: "GET",
         contentType: "application/json; charset=utf-8",
         dataType: "json"
       }).done(function (res) {
         if (res && res.data !== undefined) {
-          $(".latest-data").html(res.data);
+          $(".data-content").html(res.data);
         }
       });
     }
