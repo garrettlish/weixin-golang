@@ -68,8 +68,9 @@
         <h1 style="display: inline; margin-bottom: 48px;">欢迎Garrett李小程序</h1>
     </div>
     <div style="text-align: center">
-        <div style="display: flex; justify-content: center; margin-bottom: 80px">
-            <a class="btn btn-success btn-lg data-button" style="background: #07C160; border: 0;">更新</a>
+        <div style="display: flex; justify-content: center; margin-bottom: 50px">
+            <a class="btn btn-success btn-lg data-button update-button" style="background: #07C160; border: 0;">更新</a>
+            <a class="btn btn-outline-success btn-lg data-button clear-button" style="background: rgba(0,0,0,0.03); color: #07C160; border: 0;">清空</a>
         </div>
         <p class="data-text">最新数据：<span class="data-content"></span></p>
     </div>
@@ -95,7 +96,7 @@
             });
         }
 
-        $('.data-button').click(function () {
+        $('.update-button').click(function () {
             $.ajax("/api/stock", {
                 method: "GET",
                 contentType: "application/json; charset=utf-8",
@@ -105,6 +106,10 @@
                     $(".data-content").html(res.data);
                 }
             });
+        });
+
+        $('.clear-button').click(function () {
+            $(".data-content").html('')
         });
     });
 </script>
